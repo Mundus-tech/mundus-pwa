@@ -48,8 +48,39 @@ async function connectBluetooth() {
     stepCharacteristic.addEventListener("characteristicvaluechanged", (e) => {
       console.log(e.target.value);
     });
+
+    device.addEventListener("gattserverdisconnected", onDisconnected);
   } catch (e) {
     console.log(e);
   }
 }
-c;
+
+function onDisconnected(event) {
+  const device = event.target;
+  console.log(`Device ${device.name} is disconnected.`);
+}
+
+function connect() {
+  exponentialBackoff(
+    3 /* max retries */,
+    2 /* seconds delay */,
+    function toTry() {
+      return bluetoothDevice.gatt.connect();
+    },
+    function success() {},
+    function fail() {}
+  );
+}
+
+function exponentialBackoff(max, delay, toTry, success, fail) {
+  toTry()
+    .then((result) => success(result))
+    .catch((_) => {
+      if (max === 0) {
+        return fail();
+      }
+      setTimeout(function () {
+        exponentialBackoff(--max, delay * 2, toTry, success, fail);
+      }, delay * 1000);
+    });
+}
