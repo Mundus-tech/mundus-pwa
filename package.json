@@ -19,11 +19,12 @@
   },
   "homepage": "https://github.com/Mundus-tech/mundus-pwa#readme",
   "dependencies": {
-    "@mundus-tech/mundus-pwa-bluetooth": "^1.0.1"
+    "@mundus-tech/mundus-pwa-bluetooth": "git+https://github.com/Mundus-tech/mundus-pwa-bluetooth.git#b4d48aba423e1a42a9863e958f3b31ef88f15500"
   },
   "devDependencies": {
-    "webpack": "^5.14.0",
-    "webpack-cli": "^4.3.1",
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   }
 }

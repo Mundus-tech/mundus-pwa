@@ -1,9 +1,5 @@
-import MundusBluetoothService from "@mundus-tech/mundus-pwa-bluetooth";
+import MundusBluetooth from "@mundus-tech/mundus-pwa-bluetooth"
+const mundusBluetooth = new MundusBluetooth()
 
-const bt = new MundusBluetoothService();
-
-function clickEvent() {
-  bt.connect();
-}
-
-document.querySelector("#connect").addEventListener("click", clickEvent);
+document.querySelector('#connect-bluetooth-button')
+  .onclick = mundusBluetooth.connect
